@@ -35,7 +35,7 @@ ufoy=[]
 ufoxch=[]
 ufoych=[]
 nos=6
-speed=6
+speed=3
 
 def ufospan(n,speed):
 
@@ -58,7 +58,7 @@ bulletst="ready"
 bullet=pygame.image.load('bullet.png')
 bulletx=400
 bullety=500
-bulletch=65
+bulletch=30
 
 def Bullet(x,y):
     global bulletst
@@ -101,7 +101,7 @@ action=False
 #ones=True
 run=True
 while(run):
-
+    
     screen.fill((202, 255, 251))
     ufospan(nos, speed)
 
@@ -113,15 +113,17 @@ while(run):
 
         #ufospan(n)
 
-
+    
 
     for event in pygame.event.get():
+        
         if event.type==pygame.QUIT:
             run=False
 
 
+        
 
-
+        #START AND EXIT
 
         elif event.type == pygame.MOUSEBUTTONDOWN and action == False:
             if (rect.collidepoint(event.pos)):
@@ -140,9 +142,9 @@ while(run):
                 #ROCKET CONTROL
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_LEFT or event.key == pygame.K_a:
-                    xchange-=20
+                    xchange-=10
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                    xchange += 20
+                    xchange +=10
 
                 #BULLET CONTROL
                 if event.key==pygame.K_SPACE or event.key == pygame.K_s:
@@ -179,7 +181,7 @@ while(run):
 
             if ufox[i]>740:
                 ufoxch[i]*=-1
-                ufoych[i]+=1
+                ufoych[i]+=0.5
             if ufox[i]<0:
 
                 ufoxch[i]*=-1
@@ -213,13 +215,15 @@ while(run):
 
                     text1 = font1.render("GAME OVER !", True, (255, 0, 0), (0, 0, 0))
                     textRect1 = text1.get_rect()
+                    
 
                     textRect1.center = (width // 2, height // 2)
-
+                    screen.fill((0,0,0))
                     screen.blit(text1, textRect1)
                     pygame.display.flip()
                     time.sleep(1.5)
                     screen.fill((0,0,0))
+                    
                     run=False
 
 
@@ -238,11 +242,15 @@ while(run):
 
                     textRect3.center = (width // 2, height // 2)
                     if(level!=4):
+    		
+                        screen.blit(bg, (0,0))
+
                         screen.blit(text3, textRect3)
                         pygame.display.flip()
+			
 
-                        #ufospan(n,speed)
-                        #time.sleep(0.20)
+                        
+                        time.sleep(0.5)
 
 
             Ufo(ufox[i], ufoy[i], i)
@@ -254,10 +262,10 @@ while(run):
                 textRect4 = text4.get_rect()
 
                 textRect4.center = (width // 2, height // 2)
-
+                screen.blit(bg, (0,0))
                 screen.blit(text4, textRect4)
                 pygame.display.flip()
-                time.sleep(0.16)
+                time.sleep(0.19)
 
                 run=False
 
@@ -278,3 +286,9 @@ pygame.quit()
 
 
 
+
+
+
+     
+
+              
